@@ -85,7 +85,12 @@ namespace Factory.Controllers
     {
       if(EngineerId !=0)
       {
+        var returnedJoin = _db.MachineEnigneer.Any(join => join.MachineId == machine.MachineId && join.EngineerId == EngineerId);
+
+        if (!returnedJoin)
+        {
         _db.MachineEnigneer.Add(new MachineEngineer() {EngineerId = EngineerId, MachineId = machine.MachineId});
+        }
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
