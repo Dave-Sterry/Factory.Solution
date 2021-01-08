@@ -3,6 +3,7 @@ using Factory.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Factory.Controllers
 {
@@ -68,6 +69,24 @@ namespace Factory.Controllers
     {
       var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
       _db.Machines.Remove(thisMachine);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult AddEngineer(int id)
+    {
+      var thisMachine = _db.Machines.FirstOrDefault(machines => machines.MachineId == id);
+      ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "EngineerName");
+      return View (thisMachine);
+    }
+
+    [HttpPost]
+    public ActionResult AddEngineer(Machine machine, int EngineerId)
+    {
+      if(EngineerId !=0)
+      {
+        _db.MachineEnigneer.Add(new MachineEngineer() {EngineerId = EngineerId, MachineId = machine.MachineId});
+      }
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
