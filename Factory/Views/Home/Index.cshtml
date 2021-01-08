@@ -1,7 +1,25 @@
 @{
   Layout = "_Layout";
 }
+@using Factory.Models;
 
 <h1>Welcome to Dr Sillystringz's Factory! </h1>
-<p>@Html.ActionLink("See all engineers", "Index", "Engineers")</p>
-<p>@Html.ActionLink("See all machines", "Index", "Machines")</p>
+<h2>Manage your Machines and Engineers</h2>
+<p>@Html.ActionLink("Manage all Engineers", "Index", "Engineers")</p>
+<p>@Html.ActionLink("Manage all Machines", "Index", "Machines")</p>
+
+<h3>Current Engineers</h3>
+<ul>
+    @foreach (Engineer engineer in @Model["engineers"])
+    {
+      <li>@Html.ActionLink($"{engineer.EngineerName}", "Details", "Engineers", new {id = engineer.EngineerId})</li>
+    }
+</ul>
+
+<h3>Current Machines</h3>
+<ul>
+    @foreach (Machine machine in @Model["machines"])
+    {
+      <li>@Html.ActionLink($"{machine.MachineName}", "Details", "Machines", new {id = machine.MachineId})</li>
+    }
+</ul>
