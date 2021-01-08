@@ -10,6 +10,9 @@
   @Html.LabelFor(model => model.MachineName)
   @Html.TextBoxFor(model => model.MachineName)
 
+  @Html.LabelFor(model => model.InstallDate)
+  @Html.EditorFor(model => model.InstallDate)
+
   <input type="submit" value="Add new Machine" />
 }
 <p>@Html.ActionLink("Show all Machines", "Index")</p>

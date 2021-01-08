@@ -3,14 +3,16 @@ using System;
 using Factory.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Factory.Migrations
 {
     [DbContext(typeof(FactoryContext))]
-    partial class FactoryContextModelSnapshot : ModelSnapshot
+    [Migration("20210108212318_Date")]
+    partial class Date
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,8 +26,6 @@ namespace Factory.Migrations
 
                     b.Property<string>("EngineerName");
 
-                    b.Property<DateTime>("HireDate");
-
                     b.HasKey("EngineerId");
 
                     b.ToTable("Engineers");
@@ -36,9 +36,9 @@ namespace Factory.Migrations
                     b.Property<int>("MachineId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("InstallDate");
-
                     b.Property<string>("MachineName");
+
+                    b.Property<DateTime>("StartDate");
 
                     b.HasKey("MachineId");
 
