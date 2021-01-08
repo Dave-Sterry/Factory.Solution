@@ -161,65 +161,50 @@ You can now type the follow code to launch the program...
 The program should launch using your default web browser at URL: localhost:5000.
 
 ## **SQL Schema**
-REPLACE WITH YOUR PROJECT DATABASE
-
-1 - In SQL Workbench 
-2 - On the top nav bar click the server drop down 
-3 - Select Data export 
-4 - Select your Scema in the table 
-5 - Select Dump Structure only from dropdown
-6 - Select Export to self contain file radio button 
-7 - Rename the file First_Last_project.SQL
-8 - Select Include Create Scema check box 
-9 - Start Export
-10 - Open the Dump
-11 - Remove all "--" "/*" content 
-12 - Add USE `ProjectName`; to the top of the file
-13 - Then delete these instuctions! 
-
 ```
 CREATE DATABASE  IF NOT EXISTS `david_sterry` 
-USE `david_sterry;
 
-DROP TABLE IF EXISTS `__efmigrationshistory`;
-CREATE TABLE `__efmigrationshistory` (
+DROP TABLE IF EXISTS `__EFMigrationsHistory`;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `__EFMigrationsHistory` (
   `MigrationId` varchar(95) NOT NULL,
   `ProductVersion` varchar(32) NOT NULL,
   PRIMARY KEY (`MigrationId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS `courses`;
-CREATE TABLE `courses` (
-  `CourseId` int NOT NULL AUTO_INCREMENT,
-  `CourseName` longtext,
-  PRIMARY KEY (`CourseId`)
+DROP TABLE IF EXISTS `Engineers`;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `Engineers` (
+  `EngineerId` int(11) NOT NULL AUTO_INCREMENT,
+  `EngineerName` longtext,
+  `HireDate` datetime(6) NOT NULL DEFAULT '0001-01-01 00:00:00.000000',
+  PRIMARY KEY (`EngineerId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DROP TABLE IF EXISTS `MachineEnigneer`;
+
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `MachineEnigneer` (
+  `MachineEngineerId` int(11) NOT NULL AUTO_INCREMENT,
+  `MachineId` int(11) NOT NULL,
+  `EngineerId` int(11) NOT NULL,
+  PRIMARY KEY (`MachineEngineerId`),
+  KEY `IX_MachineEnigneer_EngineerId` (`EngineerId`),
+  KEY `IX_MachineEnigneer_MachineId` (`MachineId`),
+  CONSTRAINT `FK_MachineEnigneer_Engineers_EngineerId` FOREIGN KEY (`EngineerId`) REFERENCES `engineers` (`EngineerId`) ON DELETE CASCADE,
+  CONSTRAINT `FK_MachineEnigneer_Machines_MachineId` FOREIGN KEY (`MachineId`) REFERENCES `machines` (`MachineId`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS `coursestudent`;
-CREATE TABLE `coursestudent` (
-  `CourseStudentId` int NOT NULL AUTO_INCREMENT,
-  `CourseId` int NOT NULL,
-  `StudentId` int NOT NULL,
-  PRIMARY KEY (`CourseStudentId`),
-  KEY `IX_CourseStudent_CourseId` (`CourseId`),
-  KEY `IX_CourseStudent_StudentId` (`StudentId`),
-  CONSTRAINT `FK_CourseStudent_Courses_CourseId` FOREIGN KEY (`CourseId`) REFERENCES `courses` (`CourseId`) ON DELETE CASCADE,
-  CONSTRAINT `FK_CourseStudent_Students_StudentId` FOREIGN KEY (`StudentId`) REFERENCES `students` (`StudentId`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-DROP TABLE IF EXISTS `students`;
-CREATE TABLE `students` (
-  `StudentId` int NOT NULL AUTO_INCREMENT,
-  `StudentName` longtext,
-  PRIMARY KEY (`StudentId`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+DROP TABLE IF EXISTS `Machines`;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `Machines` (
+  `MachineId` int(11) NOT NULL AUTO_INCREMENT,
+  `MachineName` longtext,
+  `InstallDate` datetime(6) NOT NULL DEFAULT '0001-01-01 00:00:00.000000',
+  PRIMARY KEY (`MachineId`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
 
-
-## **Usage / Examples**
-
-## **Planned Features**
-No new features are planned at this time.
 
 ## **Known Bugs**
 There are no known bugs
