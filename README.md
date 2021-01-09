@@ -109,6 +109,10 @@ CREATE TABLE `Machines` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
 
+SQL Database Design
+<center>
+<img style="width: 50% height: 50%" src="./ReadMeAssets/FactoryDB.png">
+</center>
 You can now type the follow code into your terminal to launch the program.
 
 <code>dotnet run</code>
