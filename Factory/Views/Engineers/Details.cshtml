@@ -4,7 +4,7 @@
 
 @model Factory.Models.Engineer
 
-<h2>Enigneer Details</h2>
+<h2>Engineer Details</h2>
 <hr />
 <h3>@Html.DisplayNameFor(model => model.EngineerName): @Html.DisplayFor(model => model.EngineerName)</h3>
 <h3>@Html.DisplayNameFor(model => model.HireDate): @Html.DisplayFor(model => model.HireDate)</h3>
@@ -15,7 +15,7 @@
 }
 else
 {
-  <h4>Machines this Enigneer can repair:</h4>
+  <h4>Machines this Enginneer can repair:</h4>
 }
 
 <ul>
@@ -33,4 +33,5 @@ else
 <p>@Html.ActionLink("Back to list", "Index")</p>
 <p>@Html.ActionLink("Edit Engineer", "Edit", new { id = Model.EngineerId })</p>
 <p>@Html.ActionLink("Delete Engineer", "Delete", new { id = Model.EngineerId })</p>
+
 
