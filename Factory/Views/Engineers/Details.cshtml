@@ -11,17 +11,11 @@
 
 @if(Model.JoinEntries.Count == 0)
 {
-  <p>This Enigneer has no machines they are licensed to repair</p>
+  <p>This Engineer has no machines they are licensed to repair</p>
 }
 else
 {
   <h4>Machines this Enigneer can repair:</h4>
-  @*<ul>
-    @foreach(var join in Model.Machines)
-    {
-      <li>@join.Machine.MachineName</li>
-    }
-  </ul>*@
 }
 
 <ul>

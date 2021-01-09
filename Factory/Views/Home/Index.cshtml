@@ -3,23 +3,37 @@
 }
 @using Factory.Models;
 
-<h1>Welcome to Dr Sillystringz's Factory! </h1>
-<h2>Manage your Machines and Engineers</h2>
-<p>@Html.ActionLink("Manage all Engineers", "Index", "Engineers")</p>
-<p>@Html.ActionLink("Manage all Machines", "Index", "Machines")</p>
+<div class ="jumbotron">
+  <h1>Welcome to Dr Sillystringz's Factory! </h1>
+  <h2>Manage your Machines and Engineers</h2>
+  <p>@Html.ActionLink("Manage all Engineers", "Index", "Engineers")</p>
+  <p>@Html.ActionLink("Manage all Machines", "Index", "Machines")</p>
+</div>
 
 <h3>Current Engineers</h3>
 <ul>
     @foreach (Engineer engineer in @Model["engineers"])
     {
-      <li>@Html.ActionLink($"{engineer.EngineerName}", "Details", "Engineers", new {id = engineer.EngineerId})</li>
-    }
+      <div class = 'card'>
+        <div class = "card-body">
+          <ol class ="card-text">
+            <li>@Html.ActionLink($"{engineer.EngineerName}", "Details", "Engineers", new {id = engineer.EngineerId})</li>
+            </ol>
+        </div>
+      </div>
+      }
 </ul>
 
 <h3>Current Machines</h3>
 <ul>
     @foreach (Machine machine in @Model["machines"])
     {
-      <li>@Html.ActionLink($"{machine.MachineName}", "Details", "Machines", new {id = machine.MachineId})</li>
+      <div class = 'card'>
+        <div class = "card-body">
+          <ol class ="card-text">
+            <li>@Html.ActionLink($"{machine.MachineName}", "Details", "Machines", new {id = machine.MachineId})</li>
+          </ol>
+        </div>
+      </div>  
     }
 </ul>
