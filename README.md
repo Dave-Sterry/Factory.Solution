@@ -3,7 +3,9 @@
 <img src="https://github.com/Dave-Sterry.png" width="200px" height="auto">
 </div>
 
-### A C# website by David Sterry updated on 01/08/2020
+### A C# website by David Sterry 
+Initialized on 01/08/21
+Last updated on 01/008/21
 
 
 ## **Project Description**
